@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание работы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Заполните даты, когда Вы работаете и выберете смену</h1>
+        <form id="work-schedule-form">
+            <div>
+                <label for="employee">ФИО сотрудника:</label>
+                <select id="employee" name="employee" required>
+                    <option value="Иванов Иван Иванович">Иванов Иван Иванович</option>
+                    <option value="Петров Петр Петрович">Петров Петр Петрович</option>
+                    <option value="Сидоров Сидор Сидорович">Сидоров Сидор Сидорович</option>
+                    <!-- Добавь остальных сотрудников -->
+                </select>
+            </div>
+
+            <div>
+                <label for="shift">Выберите смену:</label>
+                <select id="shift" name="shift" required>
+                    <option value="утренняя">Утренняя</option>
+                    <option value="средняя">Средняя</option>
+                    <option value="вечерняя">Вечерняя</option>
+                    <option value="полный день">Полный день</option>
+                    <option value="Отпуск">Отпуск</option>
+                    <option value="Больничный лист">Больничный лист</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="hoursWorked">Часы работы:</label>
+                <input type="number" id="hoursWorked" name="hoursWorked" step="0.1" required>
+            </div>
+
+            <div>
+                <button type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Укажите свой URL для отправки данных
+        const url = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Замените на ваш реальный ID скрипта
+
+        document.getElementById('work-schedule-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Отменяем стандартную отправку формы
+
+            // Собираем данные из формы
+            const employee = document.getElementById('employee').value;
+            const shift = document.getElementById('shift').value;
+            const hoursWorked = parseFloat(document.getElementById('hoursWorked').value);
+
+            // Создаем объект данных для отправки в Google Sheets
+            const data = {
+                employee: employee,
+                shift: shift,
+                hoursWorked: hoursWorked
+            };
+
+            // Отправляем данные в Google Apps Script
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                alert('Данные успешно отправлены!');
+                // Очистить форму после отправки
+                document.getElementById('work-schedule-form').reset();
+            })
+            .catch(error => {
+                console.error('Ошибка отправки:', error);
+                alert('Произошла ошибка при отправке данных!');
+            });
+        });
+    </script>
+</body>
+</html>
