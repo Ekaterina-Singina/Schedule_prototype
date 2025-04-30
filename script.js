@@ -78,7 +78,7 @@ function showNotification(message, type) {
 
 // Заготовка функции отправки в Google Sheets
 function sendToGoogleSheets(data) {
-    const url = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // сюда вставишь свой ID скрипта
+    const url = 'https://script.google.com/macros/s/AKfycbzY67Uk0SHC8grR3888je61RQjnDnzgx9bQkloJzmnZAeohPdVy2CygOmHwVvUJbk-f/exec'; // сюда вставишь свой ID скрипта
 
     fetch(url, {
         method: 'POST',
