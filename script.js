@@ -17,7 +17,7 @@ function handleShiftChange() {
     }
 }
 
-// Отправка формы
+// Отправка формы 
 document.getElementById('workScheduleForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
