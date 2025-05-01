@@ -1,31 +1,32 @@
-// Инициализация Flatpickr с множественным выбором дат
-flatpickr("#date", {
+// Инициализация flatpickr
+flatpickr("#multiDatePicker", {
   mode: "multiple",
-  dateFormat: "Y-m-d"
+  dateFormat: "Y-m-d",
+  locale: "ru"
 });
 
+// Обработка формы
 document.getElementById('scheduleForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
   const employee = document.getElementById('employee').value;
-  const dates = document.getElementById('date').value.split(','); // получаем все выбранные даты
+  const dates = document.getElementById('multiDatePicker').value.split(', ');
   const shift = document.getElementById('shift').value;
   const hoursWorked = parseInt(document.getElementById('hours').value, 10);
 
   dates.forEach(date => {
     const data = {
       employee,
-      date: date.trim(),
+      date,
       shift,
       hoursWorked
     };
-
     sendToGoogleSheets(data);
   });
 });
 
 function sendToGoogleSheets(data) {
-  const url = 'https://script.google.com/macros/s/AKfycbzY67Uk0SHC8grR3888je61RQjnDnzgx9bQkloJzmnZAeohPdVy2CygOmHwVvUJbk-f/exec'; // Замените на ваш ID скрипта
+  const url = 'https://script.google.com/macros/s/AKfycbzY67Uk0SHC8grR3888je61RQjnDnzgx9bQkloJzmnZAeohPdVy2CygOmHwVvUJbk-f/exec';
 
   fetch(url, {
     method: 'POST',
