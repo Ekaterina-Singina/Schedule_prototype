@@ -29,6 +29,7 @@ document.getElementById('scheduleForm').addEventListener('submit', function (e) 
     // Автозаполнение в зависимости от смены
     switch (shift) {
       case 'Утренняя':
+      case 'Средняя':
       case 'Вечерняя':
       case 'Суббота':
         hoursWorked = 7.2;
