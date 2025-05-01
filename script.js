@@ -54,7 +54,7 @@ document.getElementById('scheduleForm').addEventListener('submit', function (e) 
 });
 
 function sendToGoogleSheets(data) {
-  const url = 'https://script.google.com/macros/s/AKfycbzY67Uk0SHC8grR3888je61RQjnDnzgx9bQkloJzmnZAeohPdVy2CygOmHwVvUJbk-f/exec';
+  const url = 'https://script.google.com/macros/s/AKfycbzx4BD9PUbbo99_zWjbfpifyl2lPP7rr6yU8TntlK4/dev';
 
   fetch(url, {
     method: 'POST',
